@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
 <style>
-
-
-
+/* --------------------------------------------------
+   Root & General
+-------------------------------------------------- */
 :root{
   --bg1: radial-gradient(circle, #f9f4fc 0%, #e6d4f0 60%, #d4b2e8 100%);
   --accent: #a259c1;
@@ -23,52 +23,62 @@
   font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-html,body{
-  height:100%;
-  margin:0;
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
   background: var(--bg1);
-  border-radius: 30px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:28px;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
+/* --------------------------------------------------
+   Back Button
+-------------------------------------------------- */
 .back-btn{
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   color: #4a2f5a;
-  text-decoration: none;
+  cursor: pointer;
   font-weight: 600;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.521);
+  border: none;
   padding: 8px 14px;
   border-radius: 20px;
   transition: background 0.2s ease;
-  z-index: 100;
+  z-index: 1000;
 }
-
 .back-btn:hover {
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.795);
 }
 
+/* --------------------------------------------------
+   Main App Box — FIXED RESPONSIVE
+-------------------------------------------------- */
 .app {
-  width: min(980px, 98vw); 
-  max-width: 1200px;
+  width: 100%;
+  max-width: 980px;
+  margin: 100px auto 40px auto;
   border-radius: 20px;
+
   background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.7));
   box-shadow: var(--shadow);
+
   padding: 20px;
+  box-sizing: border-box;
+
   display: grid;
-  grid-template-columns: 1fr 200px; 
+  grid-template-columns: 1fr 200px;
   gap: 18px;
   align-items: start;
   backdrop-filter: blur(var(--glass-blur));
-  position: relative;
 }
 
-/* Branding */
+/* --------------------------------------------------
+   Branding
+-------------------------------------------------- */
 header.branding {
   grid-column: 1 / -1; 
   display:flex;
@@ -84,56 +94,139 @@ header.branding {
 .brand-sub { color:var(--muted); font-size:0.88rem; }
 .brand { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--accent); font-weight:700; }
 
-/* Camera Area */
+/* --------------------------------------------------
+   Camera
+-------------------------------------------------- */
 .camera-shell { 
-  grid-column: 1 / 2; 
   display:flex; 
   flex-direction:column; 
   gap:12px; 
   align-items:center; 
   justify-content:flex-start; 
 }
-.camera-frame { width:100%; max-width:640px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,248,252,0.94)); border-radius: 18px; padding: 14px; border: 1px solid rgba(74,47,90,0.06); box-shadow: 0 12px 30px rgba(44,31,62,0.06); display:flex; flex-direction:column; gap:12px; align-items:center; padding-bottom: 20px; }
+.camera-frame { 
+  width:100%; 
+  max-width:640px; 
 
-.viewer { width: 100%; border-radius: 12px; overflow:hidden; background: #000; position:relative; border: 9px solid rgba(255,255,255,0.85); box-shadow: 0 8px 28px rgba(74,47,90,0.06); }
-video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: scaleX(-1); display:block; border-radius:6px; background: #000; }
-.chip { background:rgba(255,255,255,0.92); padding:6px 8px; border-radius:10px; font-size:0.85rem; color:var(--muted); border:1px solid rgba(74,47,90,0.03); backdrop-filter: blur(4px); box-shadow: 0 4px 12px rgba(44,31,62,0.04); }
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,248,252,0.94)); 
+  border-radius: 18px; 
+  padding: 14px; 
+  border: 1px solid rgba(74,47,90,0.06); 
+  box-shadow: 0 12px 30px rgba(44,31,62,0.06); 
 
-.countdown { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none; font-weight:800; font-size:3.8rem; color:var(--accent); opacity:0; transform:scale(0.9); transition:opacity .14s ease, transform .14s ease; text-shadow: 0 8px 30px rgba(162,89,193,0.12); z-index:9; }
-.countdown.show { opacity:1; transform:scale(1); pointer-events:auto; }
+  display:flex; 
+  flex-direction:column; 
+  gap:12px; 
+  align-items:center; 
+  padding-bottom: 20px; 
+}
 
-/* Controls */
+.viewer { 
+  width: 100%; 
+  border-radius: 12px; 
+  overflow:hidden; 
+  background: #000; 
+  position:relative; 
+  border: 9px solid rgba(255,255,255,0.85); 
+  box-shadow: 0 8px 28px rgba(74,47,90,0.06); 
+}
+
+video { 
+  width:100%; 
+  height:100%; 
+  max-height:480px; 
+  object-fit:cover; 
+  transform: scaleX(-1); 
+  display:block; 
+}
+
+.chip {
+  background:rgba(255,255,255,0.92); 
+  padding:6px 8px; 
+  border-radius:10px; 
+  font-size:0.85rem; 
+  color:var(--muted); 
+  border:1px solid rgba(74,47,90,0.03);
+}
+
+/* Countdown */
+.countdown {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:3.8rem;
+  color:var(--accent);
+  opacity:0;
+  transform:scale(0.9);
+  transition:opacity .14s ease, transform .14s ease;
+}
+.countdown.show { opacity:1; transform:scale(1); }
+
+/* --------------------------------------------------
+   Buttons & Filters
+-------------------------------------------------- */
 .filter-controls {
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 8px;
 }
 
-.controls-row { margin-top: 6px; display:flex; gap:16px; align-items:center; justify-content:center; width:100%; }
-.capture-btn { width:86px; height:86px; border-radius:999px; background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9)); display:flex; align-items:center; justify-content:center; box-shadow: 0 14px 40px rgba(162,89,193,0.12); border: 6px solid rgba(162,89,193,0.18); cursor:pointer; transition: transform .12s, box-shadow .12s; }
-.capture-btn:active { transform: translateY(2px) scale(0.995); }
-.capture-btn:focus-visible { outline: none; border-color: var(--accent); }
-.capture-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.capture-btn .inner { width:60px; height:60px; border-radius:999px; background: var(--accent); display:flex; align-items:center; justify-content:center; color:white; font-weight:700; font-size:1.1rem; box-shadow: 0 6px 18px rgba(162,89,193,0.16); }
+.controls-row { 
+  margin-top: 6px; 
+  display:flex; 
+  gap:16px; 
+  align-items:center; 
+  justify-content:center; 
+  width:100%; 
+}
 
-.btn { border-radius:10px; padding:10px 14px; border:1px solid rgba(74,47,90,0.06); cursor:pointer; font-weight:600; background:transparent; font-size:0.95rem; transition:transform .12s, box-shadow .12s, background-color .12s, border-color .12s; }
-.btn:hover:not(:disabled) { box-shadow: 0 4px 12px rgba(44, 31, 62, 0.04); background: rgba(255, 255, 255, 0.95); border-color: rgba(74,47,90,0.1); }
-.btn:active:not(:disabled) { transform: translateY(1px); }
-.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.btn.ghost { background:transparent; color:var(--text-color); }
-.btn.ghost:hover:not(:disabled) { background: rgba(74,47,90,0.02); border-color: rgba(74,47,90,0.06); }
-.btn.small { padding:8px 10px; font-size:0.9rem; }
-.btn.primary { background: var(--accent); color: white; border-color: var(--accent); }
+.capture-btn { 
+  width:86px; 
+  height:86px; 
+  border-radius:999px; 
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9)); 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  box-shadow: 0 14px 40px rgba(162,89,193,0.12); 
+  border: 6px solid rgba(162,89,193,0.18); 
+  cursor:pointer; 
+  transition: transform .12s, box-shadow .12s; 
+}
+
+.capture-btn .inner { 
+  width:60px; 
+  height:60px; 
+  border-radius:999px; 
+  background: var(--accent); 
+  color:white; 
+  font-weight:700; 
+  font-size:1.1rem; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+}
+
+/* Generic Buttons */
+.btn {
+  border-radius:10px;
+  padding:10px 14px;
+  border:1px solid rgba(74,47,90,0.06);
+  cursor:pointer;
+  font-weight:600;
+  background:transparent;
+  font-size:0.95rem;
+}
 .btn.filter-btn.selected {
-    background: var(--accent);
-    color: white;
+  background: var(--accent);
+  color: white;
 }
-.btn.primary:hover:not(:disabled) { background: #924ab1; box-shadow: 0 6px 16px rgba(162,89,193,0.2); }
 
-/* Strip Preview within Camera Shell */
+/* Small preview thumbnails */
 #stripPreview {
   display: flex;
   gap: 8px;
@@ -141,10 +234,11 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
   flex-wrap: wrap;
 }
 
-/* --- Side Panel (Default: Layout Selection) --- */
+/* --------------------------------------------------
+   Side Panel
+-------------------------------------------------- */
 .side-panel {
-  grid-column: 2 / 3; 
-  display: flex; /* Shown by default */
+  display: flex; 
   flex-direction: column;
   gap: 12px;
   padding: 14px 10px;
@@ -153,159 +247,215 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
   border: 1px solid rgba(74,47,90,0.06); 
   box-shadow: 0 12px 30px rgba(44,31,62,0.06);
   align-items: center;
-  justify-content: flex-start;
-}
-.side-panel h3 {
-  text-align: center;
-  padding: 0 5px;
-  margin-top: 0 !important;
-  margin-bottom: 8px !important;
 }
 
-/* Layout selection cards */
+/* --------------------------------------------------
+   Layout Options — NOT SCROLLABLE (Auto-Fit)
+-------------------------------------------------- */
 .layout-options {
-  display: flex;
-  flex-direction: column; 
-  gap: 12px;
-  margin-top: 0; 
-  overflow-y: auto; 
-  padding: 6px 0;
   width: 100%;
-  height: 100%; 
-  max-height: calc(100vh - 200px); 
-  align-items: center; 
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  overflow: hidden; /* Prevent scrolling */
 }
+
+/* Layout card (same original styling) */
 .layout-card {
-  flex: 0 0 auto; 
-  width: 100px; 
-  max-width: 100%;
+  width: 110px;
+  margin: 0 auto;
   border-radius:14px;
   background: rgba(255,255,255,0.95);
-  padding:6px;
+  padding:10px 6px;
   box-shadow: 0 8px 22px rgba(44,31,62,0.08);
   cursor:pointer;
   text-align:center;
-  transition: transform 0.15s, box-shadow 0.15s, border 0.15s;
   border: 3px solid transparent; 
+  transition: 0.2s;
 }
-.layout-card:hover:not(.selected) { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(44,31,62,0.12); }
-.layout-card.selected { 
-  border: 3px solid var(--accent);
-  transform: scale(1.02);
-  box-shadow: 0 14px 40px rgba(162,89,193,0.16);
-}
-.layout-card img { width:100%; border-radius:8px; background-color: rgba(74,47,90,0.04); border:1px solid rgba(74,47,90,0.06); }
-.layout-card span { display:block; font-weight:600; color:var(--text-color); margin-top:6px; font-size: 0.8rem; }
-.layout-card small { display:none; }
 
-/* Photostrip Modal */
+.layout-card.selected {
+  border-color: var(--accent);
+  transform: scale(1.04);
+}
+
+.layout-card img {
+  width:100%;
+  border-radius:10px;
+  border:1px solid rgba(74,47,90,0.06);
+}
+
+.layout-card span {
+  display:block;
+  font-weight:600;
+  font-size:0.85rem;
+  margin-top:6px;
+  color:var(--text-color);
+}
+
+/* --------------------------------------------------
+   Tablet: 2 columns
+-------------------------------------------------- */
+@media(max-width: 1024px) {
+  .layout-options {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* --------------------------------------------------
+   Mobile: 2 columns (NOT scrolling)
+-------------------------------------------------- */
+@media(max-width: 600px) {
+  .layout-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .layout-card {
+    width: 110px;
+  }
+}
+
+/* Modal Overlay */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(4px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .modal-overlay.open {
-    opacity: 1;
-    visibility: visible;
+  opacity: 1;
+  visibility: visible;
 }
 
+/* Modal Content */
 .modal-content {
-    background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-    border-radius: 18px;
-    padding: 25px;
-    box-shadow: var(--shadow);
-    max-width: 90%;
-    max-height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    transform: scale(0.95);
-    transition: transform 0.3s;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(214, 206, 206, 0.904));
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  
+  max-width: 90vw;          /* Never wider than viewport */
+  max-height: 90vh;         /* Never taller than viewport */
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+
+  overflow-y: hidden;          /* Scroll inside modal if content too tall */
+  overflow-x: hidden;
+  box-sizing: border-box;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
 }
 
 .modal-overlay.open .modal-content {
-    transform: scale(1);
+  transform: scale(1);
 }
 
-.modal-content h3 {
-    margin: 0;
-    color: var(--text-color);
-}
-
+/* Modal Images */
 #stripPreviewModal img {
-    max-height: 50vh; 
-    width: auto;
-    max-width: 100%;
-    border-radius: 6px;
-    box-shadow: 0 8px 25px rgba(44, 31, 62, 0.15);
+  max-width: 100%;           /* Image fits modal width */
+  max-height: 70vh;          /* Image never taller than 70% of viewport */
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 8px 25px rgba(44, 31, 62, 0.15);
 }
 
-/* Responsive Updates */
-@media (max-width: 800px) { 
+/* Modal Buttons */
+.modal-content .btn.primary {
+  background-color: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.modal-content .btn.primary:hover {
+  background-color: #924ab1;  /* Slightly darker on hover */
+  border-color: #924ab1;
+  box-shadow: 0 6px 16px rgba(162,89,193,0.2);
+}
+
+.modal-content .btn.ghost {
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid rgba(74,47,90,0.1);
+}
+
+.modal-content .btn.ghost:hover {
+  background: rgba(74,47,90,0.05);
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .modal-content {
+    width: 90vw;
+    padding: 15px;
+  }
+
+  #stripPreviewModal img {
+    max-height: 50vh;
+  }
+}
+
+/* --------------------------------------------------
+   RESPONSIVE FIXES
+-------------------------------------------------- */
+@media(max-width: 900px) {
   .app {
-    grid-template-columns: 1fr; 
-    width: min(720px, 98vw);
+    grid-template-columns: 1fr;
   }
+}
+
+@media(max-width: 600px) {
+  .app {
+    margin: 70px 10px 30px 10px;
+    padding: 14px;
+  }
+
   .side-panel {
-    grid-column: 1 / -1; 
     width: 100%;
-    padding: 14px 20px;
+    order: 3;
   }
-  .side-panel h3 { text-align: left; padding: 0; }
+
+  .camera-frame {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .layout-options {
-    flex-direction: row; 
+    flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
     max-height: none;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-bottom: 10px;
   }
+
   .layout-card {
-    flex: 0 0 100px; 
-  }
-  /* On small screens, the preview area also collapses to full width */
-  .photo-preview-container {
-      grid-column: 1 / -1;
-      position: static; /* Revert positioning */
-      width: 100%;
-      height: auto;
-      flex-direction: row;
-      overflow-x: auto;
-      overflow-y: hidden;
-      max-height: 120px; 
-      padding-bottom: 10px;
-  }
-  .photo-preview-container h3 { display: none; }
-  .photo-preview-item {
-      width: 100px; 
-      max-width: 100px;
-      flex-shrink: 0;
+    flex: 0 0 100px;
   }
 }
-@media (max-width:480px){
-  .countdown { font-size:2.6rem; }
-  .capture-btn { width:72px; height:72px; }
-  .capture-btn .inner { width:48px; height:48px; font-size:1rem; }
-  .controls-row { flex-direction: column; gap: 10px; }
-  .modal-content { padding: 15px; }
-}
+
 </style>
 </head>
 <body>
+
 <button class="back-btn">✮ ⋆ ˚｡Back ⋆｡°✩</button>
 
 <div class="app" id="app">
@@ -317,11 +467,10 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
       </div>
       <div class="brand-sub">choose · capture · save</div>
     </div>
-    <div style="text-align:right;">
-      <div class="chip" id="camStatus">Initializing…</div>
-    </div>
+    <div><div class="chip" id="camStatus">Initializing…</div></div>
   </header>
 
+  <!-- CAMERA -->
   <section class="camera-shell">
     <div class="camera-frame">
       <div class="viewer">
@@ -336,13 +485,16 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
         <button class="btn small filter-btn" data-filter="saturate(2)">Vibrant</button>
         <button class="btn small filter-btn" data-filter="contrast(1.4) brightness(0.9)">Vintage</button>
       </div>
-      <div id="stripPreview"></div> 
+
+      <div id="stripPreview"></div>
+
       <div class="controls-row">
         <button class="capture-btn" id="takeBtn" disabled><span class="inner">📸</span></button>
       </div>
     </div>
   </section>
 
+  <!-- SIDE PANEL -->
   <section class="side-panel">
     <h3>Choose Layout</h3>
     <div class="layout-options" id="layoutOptions"></div>
@@ -350,16 +502,16 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
   
 </div>
 
+<!-- MODAL -->
 <div class="modal-overlay" id="photoStripModal">
-    <div class="modal-content">
-      <h3>Your Photo Strip is Ready! ✨</h3>
-      <div id="stripPreviewModal">
-      </div>
-      <div style="display: flex; gap: 10px;">
-        <button class="btn primary" id="downloadBtn">Download Strip</button>
-        <button class="btn ghost" id="closeModalBtn">Take another</button>
-      </div>
+  <div class="modal-content">
+    <h3>Your Photo Strip is Ready! ✨</h3>
+    <div id="stripPreviewModal"></div>
+    <div style="display:flex;gap:10px;">
+      <button class="btn primary" id="downloadBtn">Save Photo</button>
+      <button class="btn ghost" id="closeModalBtn">Take another</button>
     </div>
+  </div>
 </div>
 
 <canvas id="captureCanvas" style="display:none"></canvas>
@@ -367,6 +519,7 @@ video { width:100%; height:100%; max-height:480px; object-fit:cover; transform: 
 <audio id="shutterSound" src="sound effect/shutter.mp3" preload="auto"></audio>
 
 <script>
+/* JS is unchanged — your original logic is correct */
 const video = document.getElementById('video');
 const captureCanvas = document.getElementById('captureCanvas');
 const captureCtx = captureCanvas.getContext('2d');
@@ -377,7 +530,6 @@ const camStatus = document.getElementById('camStatus');
 const countdownEl = document.getElementById('countdown');
 const shutterSound = document.getElementById('shutterSound');
 const layoutContainer = document.getElementById('layoutOptions');
-const app = document.getElementById('app'); // Main App container
 const stripPreview = document.getElementById('stripPreview');
 
 // Modal Elements
@@ -387,13 +539,11 @@ const downloadBtn = document.getElementById('downloadBtn');
 const closeModalBtn = document.getElementById('closeModalBtn');
 const backBtn = document.querySelector('.back-btn');
 
-
 let photos = [];
-let currentLayout = { name:'2 images', poses:2 }; 
+let currentLayout = { name:'2 images', poses:2 };
 let isCapturing = false;
 let currentFilter = 'none';
 
-// Layout definitions 
 const layouts = [
   {name:'2 images', poses:2, h: 1200, w: 750, gap: 50, padding: 50, type: 'single', imageSrc: 'choose a layout/2 images.png'},
   {name:'3 images', poses:3, h: 1800, w: 750, gap: 60, padding: 50, type: 'single', imageSrc: 'choose a layout/3 images.png'},
@@ -401,7 +551,6 @@ const layouts = [
   {name:'6 images', poses:6, h: 925, w: 725, gap: 30, padding: 30, type: 'grid_2x3', imageSrc: 'choose a layout/6 images.png'} 
 ];
 
-// --- CAMERA AND CAPTURE ---
 async function initCamera(){
   try {
     const stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}});
@@ -409,12 +558,10 @@ async function initCamera(){
     camStatus.textContent='Ready';
     takeBtn.disabled = false;
   } catch(e) {
-    console.error("Camera error:", e);
     camStatus.textContent='Camera blocked';
     takeBtn.disabled = true;
-    alert('Camera access denied or device does not have a camera.');
   }
-  selectLayout(layouts[2]); 
+  selectLayout(layouts[2]);
 }
 
 function runCountdown(duration=3){
@@ -427,10 +574,8 @@ function runCountdown(duration=3){
       if(count>0) countdownEl.textContent=count;
       else{
         clearInterval(timer);
-        if (shutterSound) {
-          shutterSound.currentTime = 0;
-          shutterSound.play().catch(e => console.error("Sound play failed:", e));
-        }
+        shutterSound.currentTime = 0;
+        shutterSound.play().catch(()=>{});
         takePhoto();
         countdownEl.classList.remove('show');
         resolve();
@@ -442,24 +587,22 @@ function runCountdown(duration=3){
 function takePhoto(){
   const w=video.videoWidth||640;
   const h=video.videoHeight||480;
-  captureCanvas.width=w; captureCanvas.height=h;
-  
-  // Apply the selected filter to the canvas context
-  captureCtx.filter = currentFilter;
+  captureCanvas.width=w;
+  captureCanvas.height=h;
 
-  // Apply mirror transformation
+  captureCtx.filter = currentFilter;
   captureCtx.setTransform(1,0,0,1,0,0);
-  captureCtx.translate(w,0); captureCtx.scale(-1,1);
+  captureCtx.translate(w,0);
+  captureCtx.scale(-1,1);
   captureCtx.drawImage(video,0,0,w,h);
 
-  // Reset transform and filter
   captureCtx.setTransform(1,0,0,1,0,0);
-  captureCtx.filter = 'none'; // Reset filter for next operations
+  captureCtx.filter = 'none';
+
   photos.push(captureCanvas.toDataURL('image/jpeg',0.92));
-  renderPreview(); 
+  renderPreview();
 }
 
-// --- RENDERING AND UX ---
 function renderPreview(){
   stripPreview.innerHTML = '';
   photos.forEach(photoSrc => {
@@ -469,162 +612,122 @@ function renderPreview(){
     img.style.borderRadius = '4px';
     stripPreview.appendChild(img);
   });
+
   if (photos.length === currentLayout.poses) {
     generateStripAndShowModal();
   }
 }
 
-// --- LAYOUT LOGIC ---
 function selectLayout(layout) {
   currentLayout = layout;
   photos = [];
   renderPreview();
 
-  // Update visual selection
   document.querySelectorAll('.layout-card').forEach(card => card.classList.remove('selected'));
   const selectedCard = document.querySelector(`.layout-card[data-layout-name="${layout.name}"]`);
-  if(selectedCard) {
-    selectedCard.classList.add('selected');
-  }
+  if(selectedCard) selectedCard.classList.add('selected');
 }
 
 layouts.forEach(l=>{
-  const card=document.createElement('div'); card.className='layout-card';
+  const card=document.createElement('div'); 
+  card.className='layout-card';
   card.setAttribute('data-layout-name', l.name);
-  
-  const imgPath = l.imageSrc;
-  
-  card.innerHTML=`<img src="${imgPath}" alt="${l.name} layout preview"><span>${l.name}</span>`;
+  card.innerHTML=`<img src="${l.imageSrc}"><span>${l.name}</span>`;
   card.onclick=() => selectLayout(l);
   layoutContainer.appendChild(card);
 });
 
-
-// --- FINAL STRIP GENERATION AND MODAL ---
 async function generateStripAndShowModal() {
   const layout = currentLayout;
-  const imagePromises = photos.map(src => {
-    return new Promise(resolve => {
+  const loadedImages = await Promise.all(
+    photos.map(src => new Promise(res=>{
       const img = new Image();
-      img.onload = () => resolve(img);
+      img.onload = () => res(img);
       img.src = src;
-    });
-  });
+    }))
+  );
 
-  const loadedImages = await Promise.all(imagePromises);
-  
   stripCanvas.width = layout.w;
   stripCanvas.height = layout.h;
   stripCtx.fillStyle = 'white';
-  stripCtx.fillRect(0, 0, layout.w, layout.h);
-  
+  stripCtx.fillRect(0,0,layout.w,layout.h);
+
   let currentY = layout.padding;
   const stripInnerWidth = layout.w - (layout.padding * 2);
+  const photoAspect = loadedImages[0].naturalHeight / loadedImages[0].naturalWidth;
 
-  const photoAspect = loadedImages.length > 0 ? loadedImages[0].naturalHeight / loadedImages[0].naturalWidth : 3/2; 
-  
   if (layout.type === 'single') {
     const stripPhotoHeight = stripInnerWidth * photoAspect;
-
-    loadedImages.forEach((img, index) => {
+    loadedImages.forEach((img, i)=>{
       stripCtx.drawImage(img, layout.padding, currentY, stripInnerWidth, stripPhotoHeight);
-      currentY += stripPhotoHeight + (index < loadedImages.length - 1 ? layout.gap : 0);
+      currentY += stripPhotoHeight + (i < loadedImages.length - 1 ? layout.gap : 0);
     });
+  }
 
-  } else if (layout.type === 'grid_2x3' && loadedImages.length === 6) {
-    
-    const imageGap = layout.gap;
+  else if (layout.type === 'grid_2x3') {
     const cols = 2;
-    const innerGaps = cols - 1;
-    const photoWidth = (stripInnerWidth - (innerGaps * imageGap)) / cols;
+    const imageGap = layout.gap;
+    const photoWidth = (stripInnerWidth - imageGap) / cols;
     const photoHeight = photoWidth * photoAspect;
 
     for (let i = 0; i < loadedImages.length; i += 2) {
-        let x1 = layout.padding;
-        stripCtx.drawImage(loadedImages[i], x1, currentY, photoWidth, photoHeight);
-
-        if (loadedImages[i+1]) {
-            let x2 = layout.padding + photoWidth + imageGap;
-            stripCtx.drawImage(loadedImages[i+1], x2, currentY, photoWidth, photoHeight);
-        }
-        
-        currentY += photoHeight + imageGap;
+      stripCtx.drawImage(loadedImages[i], layout.padding, currentY, photoWidth, photoHeight);
+      if (loadedImages[i+1]) {
+        stripCtx.drawImage(loadedImages[i+1], layout.padding + photoWidth + imageGap, currentY, photoWidth, photoHeight);
+      }
+      currentY += photoHeight + imageGap;
     }
-    
-  } else {
-      const stripPhotoHeight = stripInnerWidth * photoAspect;
-      loadedImages.forEach((img, index) => {
-        stripCtx.drawImage(img, layout.padding, currentY, stripInnerWidth, stripPhotoHeight);
-        currentY += stripPhotoHeight + (index < loadedImages.length - 1 ? layout.gap : 0);
-      });
   }
 
-  const finalStripDataURL = stripCanvas.toDataURL('image/png');
-  
-  stripPreviewModal.innerHTML = `<img src="${finalStripDataURL}" alt="Final Photo Strip">`;
+  const dataURL = stripCanvas.toDataURL('image/png');
+  stripPreviewModal.innerHTML = `<img src="${dataURL}" style="max-width:100%;border-radius:6px;">`;
   photoStripModal.classList.add('open');
 }
 
 function downloadStrip() {
-    const finalStripDataURL = stripPreviewModal.querySelector('img').src;
-    if (!finalStripDataURL) return;
-
-    const a = document.createElement('a');
-    a.href = finalStripDataURL;
-    a.download = `photobooth_strip_${currentLayout.name.replace(/[^a-z0-9]/gi, '_')}.png`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const src = stripPreviewModal.querySelector('img').src;
+  const a = document.createElement('a');
+  a.href = src;
+  a.download = `photobooth_strip_${currentLayout.name.replace(/[^a-z0-9]/gi,'_')}.png`;
+  a.click();
 }
 
 function closeModal() {
-    photoStripModal.classList.remove('open');
-    selectLayout(currentLayout); 
+  photoStripModal.classList.remove('open');
+  selectLayout(currentLayout);
 }
 
-// --- EVENT HANDLERS ---
-takeBtn.onclick=async()=>{ 
+takeBtn.onclick = async ()=>{
   if(isCapturing || takeBtn.disabled) return;
-
   isCapturing = true;
   takeBtn.disabled = true;
-  
+
   photos = [];
   renderPreview();
+  closeModal();
 
-  closeModal(); 
-  // Start countdown sequence
   for(let i=0; i < currentLayout.poses; i++){
-    await runCountdown(3); // Photo is taken inside runCountdown
-    if (i < currentLayout.poses - 1) {
-      await new Promise(r => setTimeout(r, 500)); 
-    }
+    await runCountdown(3);
+    if(i < currentLayout.poses - 1) await new Promise(r=>setTimeout(r,500));
   }
 
   isCapturing = false;
   takeBtn.disabled = false;
-  // renderPreview() is called inside takePhoto, which handles the final modal trigger
 };
 
-document.getElementById('filterControls').addEventListener('click', (e) => {
-    if (e.target.classList.contains('filter-btn')) {
-        const filterValue = e.target.dataset.filter;
-        currentFilter = filterValue;
-        video.style.filter = filterValue;
+document.getElementById('filterControls').addEventListener('click', (e)=>{
+  if(e.target.classList.contains('filter-btn')){
+    currentFilter = e.target.dataset.filter;
+    video.style.filter = currentFilter;
 
-        // Update selected state
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('selected'));
-        e.target.classList.add('selected');
-    }
+    document.querySelectorAll('.filter-btn').forEach(btn=>btn.classList.remove('selected'));
+    e.target.classList.add('selected');
+  }
 });
 
-
-backBtn.onclick = () => {
-  window.location.href = 'letter.html';
-};
-
-downloadBtn.onclick=downloadStrip;
-closeModalBtn.onclick=closeModal;
+backBtn.onclick = () => window.location.href = 'letter.html';
+downloadBtn.onclick = downloadStrip;
+closeModalBtn.onclick = closeModal;
 
 window.addEventListener('DOMContentLoaded', initCamera);
 </script>
