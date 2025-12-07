@@ -9,9 +9,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Caveat:wght@700&display=swap" rel="stylesheet">
 
 <style>
-/* --------------------------------------------------
-   Root & General
--------------------------------------------------- */
+
+body {
+  opacity: 0;
+  animation: fadeZoomGlow 1.5s ease forwards;
+}
+
+@keyframes fadeZoomGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.97);
+    box-shadow: 0 0 0px rgba(255, 200, 255, 0);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.02);
+    box-shadow: 0 0 40px rgba(255, 200, 255, 0.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 20px rgba(255, 200, 255, 0.2);
+  }
+}
+
 :root{
   --bg1: radial-gradient(circle, #f9f4fc 0%, #e6d4f0 60%, #d4b2e8 100%);
   --accent: #a259c1;
@@ -23,19 +44,24 @@
   font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
+body {
+  height:100%;
+  margin:0;
   background: var(--bg1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
   box-sizing: border-box;
-  overflow-x: hidden;
+  text-align: center;
+  overflow: hidden;
 }
 
-/* --------------------------------------------------
-   Back Button
--------------------------------------------------- */
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
 .back-btn{
   position: fixed;
   top: 20px;
@@ -60,39 +86,31 @@ html, body {
 .app {
   width: 100%;
   max-width: 980px;
-  margin: 100px auto 40px auto;
+  margin: 0 auto; /* Remove vertical margins to allow flex centering */
   border-radius: 20px;
 
   background: linear-gradient(180deg, rgba(255,255,255,0.84), rgba(255,255,255,0.7));
   box-shadow: var(--shadow);
 
-  padding: 20px;
+  padding: 0 20px; /* Adjust padding to work with new structure */
   box-sizing: border-box;
 
-  display: grid;
-  grid-template-columns: 1fr 200px;
-  gap: 18px;
-  align-items: start;
+  display: flex; /* Change to flex to manage internal scrolling */
+  flex-direction: column;
+  max-height: 95vh; /* Ensure app container fits on screen */
   backdrop-filter: blur(var(--glass-blur));
+  margin-right: 10px;
 }
 
-/* --------------------------------------------------
-   Branding
--------------------------------------------------- */
-header.branding {
-  grid-column: 1 / -1; 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid rgba(74,47,90,0.06);
+.app-content {
+  display: flex; /* Changed to flex for better height management */
+  grid-template-columns: 1fr 200px;
+  gap: 18px;
+  align-items: stretch; /* Make both columns equal height */
+  padding: 15px 0; /* Reduced vertical padding */
+  overflow-y: hidden; /* Ensure no scrolling occurs */
+  min-height: 0; /* Fix for flexbox shrinking issues */
 }
-.brand-left { display:flex; flex-direction:column; }
-.brand-title { display:flex; gap:10px; align-items:baseline; }
-.brand-title h1 { margin:0; font-family: 'Playfair Display', serif; font-size:1.35rem; color:var(--text-color); }
-.brand-sub { color:var(--muted); font-size:0.88rem; }
-.brand { font-family: 'Caveat', cursive; font-size: 1.5rem; color: var(--accent); font-weight:700; }
 
 /* --------------------------------------------------
    Camera
@@ -102,7 +120,9 @@ header.branding {
   flex-direction:column; 
   gap:12px; 
   align-items:center; 
-  justify-content:flex-start; 
+  justify-content:flex-start;
+  flex: 1; /* Allow camera shell to take up space */
+  min-width: 0; /* Fix for flexbox shrinking issues */
 }
 .camera-frame { 
   width:100%; 
@@ -117,6 +137,7 @@ header.branding {
   display:flex; 
   flex-direction:column; 
   gap:12px; 
+  position: relative; /* For positioning the cam status chip */
   align-items:center; 
   padding-bottom: 20px; 
 }
@@ -148,22 +169,36 @@ video {
   color:var(--muted); 
   border:1px solid rgba(74,47,90,0.03);
 }
+#camStatus {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+}
 
 /* Countdown */
 .countdown {
   position:absolute;
-  inset:0;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 100px;
+  border-radius: 24px;
   display:flex;
   align-items:center;
   justify-content:center;
   font-weight:800;
   font-size:3.8rem;
-  color:var(--accent);
+  color:white;
+  text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+  backdrop-filter: blur(8px); /* Increased blur for a glassier effect */
+  background: rgba(0, 0, 0, 0.062); /* Slightly darker background */
+  border: 1px solid rgba(255,255,255,0.1);
   opacity:0;
-  transform:scale(0.9);
-  transition:opacity .14s ease, transform .14s ease;
+  transform:translate(-50%, -50%) scale(0.9);
+  transition:opacity .14s ease, transform .14s ease, backdrop-filter .14s ease;
 }
-.countdown.show { opacity:1; transform:scale(1); }
+.countdown.show { opacity:1; transform:translate(-50%, -50%) scale(1); }
 
 /* --------------------------------------------------
    Buttons & Filters
@@ -240,13 +275,15 @@ video {
 .side-panel {
   display: flex; 
   flex-direction: column;
-  gap: 12px;
-  padding: 14px 10px;
+  gap: 0; /* No gap needed as there's only one child */
+  padding: 10px; /* Symmetrical padding */
   background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,248,252,0.94)); 
   border-radius: 18px; 
   border: 1px solid rgba(74,47,90,0.06); 
   box-shadow: 0 12px 30px rgba(44,31,62,0.06);
   align-items: center;
+  flex-shrink: 0; /* Prevent side panel from shrinking */
+  min-height: 0; /* Allow flex children to shrink if needed */
 }
 
 /* --------------------------------------------------
@@ -254,11 +291,12 @@ video {
 -------------------------------------------------- */
 .layout-options {
   width: 100%;
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  padding: 6px 0;
-  overflow: hidden; /* Prevent scrolling */
+  gap: 8px;
+  padding: 0;
+  overflow: visible;   /* FIXED: prevent selected card from getting cut */
 }
 
 /* Layout card (same original styling) */
@@ -266,9 +304,9 @@ video {
   width: 110px;
   margin: 0 auto;
   border-radius:14px;
-  background: rgba(255,255,255,0.95);
+  background: rgba(255,255,255,0.92); /* Slightly more transparent to match other elements */
   padding:10px 6px;
-  box-shadow: 0 8px 22px rgba(44,31,62,0.08);
+  box-shadow: 0 8px 22px rgba(44, 31, 62, 0.363);
   cursor:pointer;
   text-align:center;
   border: 3px solid transparent; 
@@ -302,16 +340,7 @@ video {
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-/* --------------------------------------------------
-   Mobile: 2 columns (NOT scrolling)
--------------------------------------------------- */
 @media(max-width: 600px) {
-  .layout-options {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
   .layout-card {
     width: 110px;
   }
@@ -355,7 +384,7 @@ video {
   align-items: center;
   gap: 15px;
 
-  overflow-y: hidden;          /* Scroll inside modal if content too tall */
+  overflow-y: auto;          /* Scroll inside modal if content too tall */
   overflow-x: hidden;
   box-sizing: border-box;
   transform: scale(0.95);
@@ -456,49 +485,40 @@ video {
 </head>
 <body>
 
-<button class="back-btn">✮ ⋆ ˚｡Back ⋆｡°✩</button>
+<button class="back-btn">⋆ ˚｡Back ⋆｡°</button>
 
-<div class="app" id="app">
-  <header class="branding">
-    <div class="brand-left">
-      <div class="brand-title">
-        <h1>Photo Booth</h1>
-        <div class="brand">for babi</div>
-      </div>
-      <div class="brand-sub">choose · capture · save</div>
-    </div>
-    <div><div class="chip" id="camStatus">Initializing…</div></div>
-  </header>
-
+<div class="app">
   <!-- CAMERA -->
-  <section class="camera-shell">
-    <div class="camera-frame">
-      <div class="viewer">
-        <video id="video" autoplay playsinline muted></video>
-        <div class="countdown" id="countdown">3</div>
+  <div class="app-content" id="app">
+    <section class="camera-shell">
+      <div class="camera-frame">
+        <div class="chip" id="camStatus">Initializing…</div>
+        <div class="viewer">
+          <video id="video" autoplay playsinline muted></video>
+          <div class="countdown" id="countdown">3</div>
+        </div>
+
+        <div class="filter-controls" id="filterControls">
+          <button class="btn small filter-btn selected" data-filter="none">None</button>
+          <button class="btn small filter-btn" data-filter="grayscale(1)">B&W</button>
+          <button class="btn small filter-btn" data-filter="sepia(1)">Sepia</button>
+          <button class="btn small filter-btn" data-filter="saturate(2)">Vibrant</button>
+          <button class="btn small filter-btn" data-filter="contrast(1.4) brightness(0.9)">Vintage</button>
+        </div>
+
+        <div id="stripPreview"></div>
+
+        <div class="controls-row">
+          <button class="capture-btn" id="takeBtn" disabled><span class="inner">📸</span></button>
+        </div>
       </div>
+    </section>
 
-      <div class="filter-controls" id="filterControls">
-        <button class="btn small filter-btn selected" data-filter="none">None</button>
-        <button class="btn small filter-btn" data-filter="grayscale(1)">B&W</button>
-        <button class="btn small filter-btn" data-filter="sepia(1)">Sepia</button>
-        <button class="btn small filter-btn" data-filter="saturate(2)">Vibrant</button>
-        <button class="btn small filter-btn" data-filter="contrast(1.4) brightness(0.9)">Vintage</button>
-      </div>
-
-      <div id="stripPreview"></div>
-
-      <div class="controls-row">
-        <button class="capture-btn" id="takeBtn" disabled><span class="inner">📸</span></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- SIDE PANEL -->
-  <section class="side-panel">
-    <h3>Choose Layout</h3>
-    <div class="layout-options" id="layoutOptions"></div>
-  </section>
+    <!-- SIDE PANEL -->
+    <section class="side-panel">
+      <div class="layout-options" id="layoutOptions"></div>
+    </section>
+  </div>
   
 </div>
 
