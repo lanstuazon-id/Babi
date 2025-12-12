@@ -26,28 +26,28 @@ body {
   0% {
     opacity: 0;
     transform: scale(0.97);
-    box-shadow: 0 0 0px rgba(255, 200, 255, 0);
+    box-shadow: 0 0 0px rgba(255, 200, 200, 0);
   }
   50% {
     opacity: 0.6;
     transform: scale(1.02);
-    box-shadow: 0 0 40px rgba(255, 200, 255, 0.3);
+    box-shadow: 0 0 40px rgba(255, 200, 200, 0.3);
   }
   100% {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 0 20px rgba(255, 200, 255, 0.2);
+    box-shadow: 0 0 20px rgba(255, 200, 200, 0.2);
   }
 }
         
         body {
-          --bg1: radial-gradient(circle, #f9f4fc 0%, #e6d4f0 60%, #d4b2e8 100%);
-          --accent: #a259c1;
+          --bg1: radial-gradient(circle, #eed0d0 0%, #f0d4d4 60%, #e6dfd6 100%);
+          --accent: #380000;
           --card: rgba(255, 255, 255, 0.85);
           --glass: rgba(255, 255, 255, 0.4);
           --shadow: 0 8px 30px rgba(44, 31, 62, 0.12);
           --radius: 18px;
-          --text-color: #4a2f5a;
+          --text-color: #5a2f2f;
           font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', Arial;
           
           /* Full-Page Centering styles remain here */
@@ -82,7 +82,7 @@ body {
         }
 
         h1 { color: var(--text-color); margin-bottom: 5px; }
-        p { color: #634b70; }
+        p { color: #704b4b; }
 
         .back-button-container {
             position: fixed; /* Fixed position relative to viewport */
@@ -145,12 +145,12 @@ body {
 
         .mood-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 16px rgba(162, 89, 193, 0.15);
+            box-shadow: 0 6px 16px rgba(193, 89, 89, 0.15);
         }
         .mood-btn.active {
             background: var(--accent);
             color: white;
-            box-shadow: 0 4px 12px rgba(162, 89, 193, 0.4);
+            box-shadow: 0 4px 12px rgba(193, 89, 89, 0.4);
         }
         .mood-btn.active span.label {
             color: white;
@@ -271,7 +271,7 @@ body {
             margin-bottom: 5px;
         }
         #song-message {
-            color: #634b70;
+            color: #704b4b;
             margin-bottom: 20px;
         }
 
@@ -303,7 +303,7 @@ body {
             cursor: pointer;
             transition: background 0.2s, transform 0.1s;
             margin-bottom: 15px;
-            box-shadow: 0 4px 12px rgba(162, 89, 193, 0.4);
+            box-shadow: 0 4px 12px rgba(193, 89, 89, 0.4);
         }
         #play-pause-btn:active { transform: scale(0.95); }
 
@@ -325,7 +325,7 @@ body {
             gap: 10px;
         }
         .volume-container span {
-            color: #634b70;
+            color: #704b4b;
             font-size: 1.1rem;
         }
 
@@ -366,7 +366,7 @@ body {
     <div class="moodify-container">
         
         <h1>Moodify 🎧</h1>
-        <p id="main-prompt">Select a mood card to find the perfect Ariana Grande song for how you feel. 🌷</p>
+        <p id="main-prompt">select a mood card to find the emotionality for u, gew.</p>
 
         <div class="mood-selector" id="mood-selector">
             <button class="mood-btn" data-mood="calm"><span class="emoji">😌</span><span class="label">Calm</span></button>

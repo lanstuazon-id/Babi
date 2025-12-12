@@ -16,8 +16,8 @@
 
   <style>
     :root{
-      --bg1: radial-gradient(circle, #e3d0ee 0%, #e6d4f0 60%, #d4b2e8 100%);
-      --accent: #af7fc5;
+      --bg1: radial-gradient(circle, #eed0d0 0%, #f0d4d4 60%, #e6dfd6 100%);
+      --accent: #380000;
       --card: rgba(255, 255, 255, 0.85);
       --glass: rgba(255, 255, 255, 0.4);
       --shadow: 0 8px 30px rgba(44, 31, 62, 0.12);
@@ -67,7 +67,7 @@
 
     .heart{
       width:72px;height:72px;border-radius:18px;
-      background: conic-gradient(from 120deg at 50% 50%, #c391e0, var(--accent) 60%);
+      background: conic-gradient(from 120deg at 50% 50%, #a55858, var(--accent) 60%);
       display:grid;place-items:center;color:white;font-weight:700;font-size:28px;
       box-shadow:0 8px 20px rgba(162, 89, 193, 0.2);
       transform:rotate(-12deg);
@@ -81,11 +81,11 @@
     }
 
     h1{
-      margin:0;font-size:2rem;color:#4a2f5a;
+      margin:0;font-size:2rem;color:#5a2f2f;
       letter-spacing: -0.02em;
     }
 
-    p.lead{ margin:12px 0 18px;color:#634b70;opacity:0.95;line-height:1.45;font-size:1rem; }
+    p.lead{ margin:12px 0 18px;color:#704b4b;opacity:0.95;line-height:1.45;font-size:1rem; }
 
     .message{
       background: linear-gradient(180deg, rgba(255,255,255,0.5), rgba(255,255,255,0.35));
@@ -98,8 +98,8 @@
     .btn:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
     .btn:active{transform:translateY(0) scale(0.96);box-shadow:none}
     .btn.pink{background:var(--accent);color:white}
-    .btn.pink:hover{box-shadow:0 4px 12px rgba(162, 89, 193, 0.2)}
-    .btn.ghost{background:transparent;border:1px solid rgba(74, 47, 90, 0.1);color:#4a2f5a}
+    .btn.pink:hover{box-shadow:0 4px 12px rgba(193, 89, 89, 0.2)}
+    .btn.ghost{background:transparent;border:1px solid rgba(74, 47, 90, 0.1);color:#5a2f2f}
 
     .ripple {
       position: absolute;
@@ -127,13 +127,13 @@
       border-radius:14px;padding:18px;box-shadow:var(--shadow);
     }
 
-    .name-big{font-size:1.6rem;margin:0;color:#4a2f5a}
-    .nick{color:#754f8a;font-weight:700;margin-left:6px}
+    .name-big{font-size:1.6rem;margin:0;color:#5a2f2f}
+    .nick{color:#8a4f4f;font-weight:700;margin-left:6px}
 
     .stats{display:flex;gap:10px;margin-top:10px}
     .stat{flex:1;background:rgba(255,255,255,0.6);padding:10px;border-radius:10px;text-align:center; animation: pulse 3.5s infinite ease-in-out;}
     .stat strong{display:block;font-size:18px}
-    .stat span{font-size:12px;color:#634b70}
+    .stat span{font-size:12px;color:#704b4b}
     .stats .stat:nth-child(2){animation-delay: 0.3s;}
     .stats .stat:nth-child(3){animation-delay: 0.6s;}
 
@@ -165,7 +165,7 @@
       justify-content: center;
     }
 
-    footer{margin-top:18px;font-size:13px;color:#634b70;opacity:0.9}
+    footer{margin-top:18px;font-size:13px;color:#704b4b;opacity:0.9}
 
     .bg-hearts{position:absolute;inset:0;pointer-events:none;opacity:0.18}
     .bg-hearts i{position:absolute;font-style:normal;font-size:38px;animation: float-bg 15s infinite}
@@ -212,7 +212,7 @@
       appearance: none;
       width: 100%;
       height: 8px;
-      background: linear-gradient(90deg, #f9f4fc, #e6d4f0);
+      background: linear-gradient(90deg, #fcf4f4, #f0d4d4);
       border-radius: 4px;
       outline: none;
       opacity: 0.8;
@@ -287,7 +287,7 @@
       <div class="title" style="padding-bottom: 8px;">
         <div class="heart">🌷</div>
         <div>
-          <h1>Ria's App</h1>
+          <h1>𐙚˚࿔ raiza 𝜗𝜚˚⋆</h1>
           <p class="lead">⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡⋆𐙚₊˚⊹♡</p>
         </div>
       </div>
@@ -329,7 +329,7 @@
             </div>
             <div>
               <div class="name-big">Ria <span class="nick"></span></div>
-              <div style="font-size:13px;color:#634b70;margin-top:6px">My Goldie. Sungit. Forever fave.</div>
+              <div style="font-size:13px;color:#704b4b;margin-top:6px">My Goldie. Sungit. Forever fave.</div>
             </div>
           </div>
           <button class="btn pink" onclick="takePhoto()" style="white-space:nowrap;flex-shrink:0">(˶ᵔ ᵕ ᵔ˶)</button>
@@ -343,7 +343,7 @@
       </div>
 
       <div class="mini-card reveal delay">
-        <h3 style="margin:0 0 12px 0;color:#4a2f5a">More to Explore</h3>
+        <h3 style="margin:0 0 12px 0;color:#5a2f2f">More to Explore</h3>
         <div class="explore-grid">
           <button class="btn pink" onclick="openPhotobook()">📖<br>Photobook</button>
           <button class="btn pink" onclick="openMemoryBubble()">🫧<br>Memory Bubble</button>
@@ -353,13 +353,13 @@
       </div>
 
       <div class="mini-card reveal delay">
-        <h3 style="margin:0 0 12px 0;color:#4a2f5a">How's your mood today?</h3>
+        <h3 style="margin:0 0 12px 0;color:#5a2f2f">How's your mood today?</h3>
         <div class="mood-slider-container">
           <span>😔</span>
           <input type="range" id="mood-slider-input" min="0" max="100" value="50" class="mood-slider" oninput="handleMoodChange(this)">
           <span>😊</span>
         </div>
-        <p id="mood-message" style="text-align: center; font-size: 0.8rem; color: #634b70; margin: 8px 0 0;">Let me know how you're feeling!</p>
+        <p id="mood-message" style="text-align: center; font-size: 0.8rem; color: #704b4b; margin: 8px 0 0;">Let me know how you're feeling!</p>
       </div>
     </aside>
   </div>
@@ -424,7 +424,7 @@
       } else if (value < 70) {
         messageEl.textContent = "hope you're having a great day po!.";
       } else {
-        messageEl.textContent = "good to know that you're happy!. ❤️";
+        messageEl.textContent = "good to know that you're happy!.";
       }
     }
 
