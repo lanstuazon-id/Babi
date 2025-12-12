@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For You ❤️</title>
 
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#a259c1">
+
+<!-- iOS support -->
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+
 <style>
     body {
         margin: 0;
@@ -274,5 +283,12 @@
     });
 </script>
 
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("SW Registered"))
+    .catch(err => console.error("SW failed:", err));
+}
+</script>
 </body>
 </html>

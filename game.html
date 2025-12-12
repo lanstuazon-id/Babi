@@ -7,6 +7,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#a259c1">
+  
+  <!-- iOS support -->
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
   <style>
     :root{
       --bg1: linear-gradient(135deg, #d4b2e8 0%, #e6d4f0 40%, #f9f4fc 100%);
@@ -368,5 +377,13 @@
     buildBoard();
     startOverlay.style.display = 'grid';
   </script>
+
+  <script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js")
+    .then(() => console.log("SW Registered"))
+    .catch(err => console.error("SW failed:", err));
+}
+</script>
 </body>
 </html>
