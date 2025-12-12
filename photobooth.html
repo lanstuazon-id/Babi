@@ -445,39 +445,56 @@ video {
 }
 
 /* --------------------------------------------------
-   RESPONSIVE FIXES
+   RESPONSIVE FIXES (UPDATED)
 -------------------------------------------------- */
+/* Stack columns on tablet/mobile and allow scrolling */
 @media(max-width: 900px) {
-  .app {
-    grid-template-columns: 1fr;
+  .app-content {
+      flex-direction: column;
+      gap: 18px; /* Maintain gap between stacked sections */
+      overflow-y: auto; /* Allow scrolling for stacked content */
+  }
+  
+  /* Make the side panel take full width and be placed at the bottom */
+  .side-panel {
+      width: 100%;
+      flex-shrink: 0;
+      order: 3;
+      padding: 14px; /* Ensure consistent padding on side panel */
+  }
+
+  /* Adjust tablet view of layouts to 3 columns */
+  .layout-options {
+    grid-template-columns: repeat(3, 1fr); 
   }
 }
 
+/* Final adjustments for small phones (600px and below) */
 @media(max-width: 600px) {
   .app {
-    margin: 70px 10px 30px 10px;
+    margin: 10px; /* Reduced vertical margin */
     padding: 14px;
   }
-
-  .side-panel {
-    width: 100%;
-    order: 3;
+  
+  .app-content {
+      padding: 0; /* Remove padding here as sections have their own padding */
   }
 
-  .camera-frame {
-    width: 100%;
-    max-width: 100%;
-  }
-
+  /* Force horizontal scroll for layout options */
   .layout-options {
+    /* Override grid to force horizontal scrolling flex layout */
+    display: flex;
     flex-direction: row;
     overflow-x: auto;
     overflow-y: hidden;
-    max-height: none;
+    gap: 10px;
+    padding-bottom: 10px; /* Add room for scrollbar */
+    grid-template-columns: unset; /* Remove grid columns */
   }
 
   .layout-card {
-    flex: 0 0 100px;
+    flex: 0 0 100px; /* Use flex: 0 0 to prevent shrinking and set fixed width */
+    margin: 0; /* Align cards to the left for scrolling */
   }
 }
 
